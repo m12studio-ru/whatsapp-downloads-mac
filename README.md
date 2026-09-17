@@ -9,7 +9,7 @@ Nothing else in `~/Downloads` is touched.
 ## Install
 
 ```sh
-git clone https://github.com/markov12/whatsapp-downloads-mac.git
+git clone https://github.com/m12studio-ru/whatsapp-downloads-mac.git
 cd whatsapp-downloads-mac
 ./install.sh
 ```
