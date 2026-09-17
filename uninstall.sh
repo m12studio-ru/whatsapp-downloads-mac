@@ -6,8 +6,6 @@ rm -f ~/Library/LaunchAgents/$label.plist ~/.local/bin/whatsapp-downloads.sh
 rm -rf ~/Applications/$label.app
 rm -rf ~/"Applications/WhatsApp Downloads.app"
 # /Applications may need an administrator, and rm -rf would fail quietly there
-if [[ -e "/Applications/WhatsApp Downloads.app" ]]; then
-  rm -rf "/Applications/WhatsApp Downloads.app" 2>/dev/null
-  [[ -e "/Applications/WhatsApp Downloads.app" ]] && echo "Could not delete /Applications/WhatsApp Downloads.app - drag it to the Trash yourself (it needs an administrator)." >&2
-fi
+rm -rf "/Applications/WhatsApp Downloads.app" 2>/dev/null
+[[ -e "/Applications/WhatsApp Downloads.app" ]] && echo "Could not delete /Applications/WhatsApp Downloads.app - drag it to the Trash yourself (it needs an administrator)." >&2
 echo "Removed. ~/Downloads/WhatsApp and the files in it were left untouched."

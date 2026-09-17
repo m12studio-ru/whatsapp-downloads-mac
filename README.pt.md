@@ -33,7 +33,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Se você já tinha instalado a versão de linha de comando, abrir o app substitui o agente
 em segundo plano por um que aponta para `/Applications/WhatsApp Downloads.app`.
 
-Para gerar a imagem de disco você mesmo:
+O app é assinado no seu próprio Mac, não pela Apple. Por isso cada build nova parece
+um app diferente para o macOS e, depois de substituí-lo, ele pede acesso à pasta
+Downloads outra vez.
+
+Para gerar a imagem de disco você mesmo são necessárias as Ferramentas de Linha de
+Comando do Xcode (`xcode-select --install`). Depois:
 
 ```sh
 ./build.sh
@@ -65,22 +70,21 @@ Seus arquivos ficam onde estão; só o "carregador" é removido.
 
 | Caminho | O que é |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | o script que move os arquivos, ~15 linhas de zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | o script que move os arquivos, um script zsh curto |
 | `~/Applications/WhatsAppDownloads.app` | um app minúsculo que só executa o script |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | acorda o script quando `~/Downloads` muda |
 
 A versão instalada arrastando deixa apenas `/Applications/WhatsApp Downloads.app` e o
-mesmo `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` remove as duas
-variantes.
+mesmo `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` remove o agente e tudo
+que ele instalou na sua pasta pessoal; apagar `/Applications/WhatsApp Downloads.app` pode
+exigir um administrador, e o script avisa se não conseguiu.
 
 Por que empacotar como app? O macOS concede acesso a pastas por aplicativo. Um script
 de shell solto, iniciado pelo launchd, enxerga uma pasta Downloads vazia e não faz nada
 — sem avisar. Por isso o script mora dentro de um app, que é quem pode guardar a permissão.
 
 Ele aparece em *Ajustes do Sistema → Geral → Itens de Início de Sessão → Permitir em
-Segundo Plano* como **WhatsAppDownloads**, e ali dá para desligá-lo. Como é compilado
-na sua própria máquina e assinado localmente, o macOS avisa que o desenvolvedor não
-foi verificado.
+Segundo Plano* como **WhatsAppDownloads**, e ali dá para desligá-lo.
 
 ## Comportamento
 

@@ -31,7 +31,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Если раньше вы ставили версию из командной строки, запуск приложения заменит её фоновый
 агент на новый, указывающий на `/Applications/WhatsApp Downloads.app`.
 
-Собрать образ самому:
+Приложение подписано на вашем Mac, а не Apple. Поэтому каждая новая сборка выглядит
+для macOS как другое приложение, и после замены оно снова попросит доступ к
+«Загрузкам».
+
+Чтобы собрать образ самому, нужны Xcode Command Line Tools — набор инструментов
+разработчика от Apple (`xcode-select --install`). Дальше:
 
 ```sh
 ./build.sh
@@ -63,12 +68,14 @@ cd whatsapp-downloads-mac
 
 | Путь | Что это |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | сам «перекладчик», около 15 строк на zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | сам «перекладчик», небольшой скрипт на zsh |
 | `~/Applications/WhatsAppDownloads.app` | крошечная обёртка, которая запускает скрипт |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | будит его, когда `~/Downloads` меняется |
 
 Вариант с перетаскиванием ставит только `/Applications/WhatsApp Downloads.app` и тот же
-`~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` удаляет оба варианта.
+`~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` убирает фоновый
+агент и всё, что он установил в домашней папке; на удаление `/Applications/WhatsApp Downloads.app` могут
+понадобиться права администратора — если не вышло, скрипт об этом скажет.
 
 Зачем нужна обёртка-приложение? macOS выдаёт доступ к папкам отдельно каждому
 приложению. Голый шелл-скрипт, запущенный через launchd, видит пустую папку
@@ -76,9 +83,7 @@ cd whatsapp-downloads-mac
 которому и выдаётся разрешение.
 
 В списке *Системные настройки → Основные → Объекты входа → Разрешить в фоновом
-режиме* он виден как **WhatsAppDownloads**, там же его можно выключить. Он
-собирается прямо на вашей машине и подписывается локально, поэтому macOS считает
-разработчика непроверенным.
+режиме* он виден как **WhatsAppDownloads**, там же его можно выключить.
 
 ## Как он себя ведёт
 

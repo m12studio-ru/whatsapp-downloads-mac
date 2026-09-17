@@ -31,8 +31,9 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 If you already installed the command-line version, opening the app replaces its
 background agent with one pointing at `/Applications/WhatsApp Downloads.app`.
 
-Because the signature is local and ad-hoc, every new build looks like a different
-app to macOS, so after replacing the app it asks for Downloads access again.
+The app is signed on your own Mac, not by Apple. Every new build therefore looks
+like a different app to macOS, so after you replace it, it asks for access to
+Downloads again.
 
 To build the disk image yourself you need the Xcode Command Line Tools
 (`xcode-select --install`), then:
@@ -67,13 +68,13 @@ Your files stay where they are; only the mover is removed.
 
 | Path | What it is |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | the mover, ~15 lines of zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | the mover, a short zsh script |
 | `~/Applications/WhatsAppDownloads.app` | tiny wrapper that runs the script |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | wakes it when `~/Downloads` changes |
 
 The drag-and-drop version installs only `/Applications/WhatsApp Downloads.app` plus
 the same `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` removes
-the agent and everything in your home folder; deleting
+the agent and everything it installed in your home folder; deleting
 `/Applications/WhatsApp Downloads.app` may need an administrator, and the script
 tells you if it could not.
 
@@ -82,8 +83,7 @@ started by launchd sees an empty Downloads folder and silently does nothing, so 
 script lives inside an app that can hold the permission.
 
 It shows up in *System Settings → General → Login Items → Allow in the Background*
-as **WhatsAppDownloads**, where you can switch it off. It is built on your machine
-and signed locally, so macOS calls the developer unverified.
+as **WhatsAppDownloads**, where you can switch it off.
 
 ## Behaviour
 

@@ -29,7 +29,10 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 如果你之前用命令行装过，打开这个 App 会把原来的后台任务替换成指向
 `/Applications/WhatsApp Downloads.app` 的新任务。
 
-想自己打包磁盘映像：
+这个 App 是在你自己的 Mac 上签名的，不是 Apple 签的。所以每次重新构建，macOS 都会把它
+当成另一个 App：替换之后，它会再次申请「下载」文件夹的权限。
+
+想自己打包磁盘映像，需要先装 Xcode 命令行工具（Apple 的开发工具，`xcode-select --install`），然后：
 
 ```sh
 ./build.sh
@@ -61,20 +64,20 @@ cd whatsapp-downloads-mac
 
 | 路径 | 说明 |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | 负责搬文件的脚本，大约 15 行 zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | 负责搬文件的脚本，很短的一个 zsh 脚本 |
 | `~/Applications/WhatsAppDownloads.app` | 一个极小的外壳程序，用来运行该脚本 |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | `~/Downloads` 一有变化就把它叫醒 |
 
 拖拽安装的版本只会放一个 `/Applications/WhatsApp Downloads.app`，外加同一个
-`~/Library/LaunchAgents/WhatsAppDownloads.plist`。`./uninstall.sh` 两种装法都能清理干净。
+`~/Library/LaunchAgents/WhatsAppDownloads.plist`。`./uninstall.sh` 会删掉后台任务和它装进你个人文件夹的所有东西；删除
+`/Applications/WhatsApp Downloads.app` 可能需要管理员权限，删不掉时脚本会告诉你。
 
 为什么要套一层 app？因为 macOS 是按应用来授予文件夹权限的。由 launchd 直接启动的
 纯脚本看到的「下载」文件夹是空的，于是什么也不会做，所以脚本得住在一个能持有权限的
 app 里面。
 
 它会出现在 *系统设置 → 通用 → 登录项 → 允许在后台运行* 中，名字是
-**WhatsAppDownloads**，你随时可以在那里把它关掉。由于它是在你自己的机器上构建并本地
-签名的，macOS 会提示开发者身份未经验证。
+**WhatsAppDownloads**，你随时可以在那里把它关掉。
 
 ## 工作方式
 

@@ -37,7 +37,6 @@ cat > $stub <<'C'
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
@@ -173,8 +172,9 @@ Drag it into your Applications folder first, then open it from there - otherwise
 # /Volumes: a quarantined bundle is started through App Translocation from a
 # read-only copy in /private/var/folders/.../AppTranslocation/<uuid>/d/, which
 # disappears just as fast. Treat both as "not installed yet".
+# ($bundle came from ${0:A}, so /var/folders is already spelled /private/var/folders.)
 transient_location() {
-  [[ $bundle == /Volumes/* || $bundle == */AppTranslocation/* || $bundle == /private/var/folders/* ]]
+  [[ $bundle == /Volumes/* || $bundle == /private/var/folders/* ]]
 }
 
 if [[ $# -gt 0 && $1 != --move && $1 != --install ]]; then
@@ -210,10 +210,7 @@ case ${1:-} in
     [[ -f $plist ]] && replaces="This replaces the WhatsApp Downloads helper you had before, including one set up by install.sh from the command line.
 
 "
-    warn=
-    if warn=$(location_warning); then warn="$warn
-
-"; else warn=; fi
+    if warn=$(location_warning); then warn+=$'\n\n'; fi
     if err=$(install_agent 2>&1); then
       dialog "${warn}${replaces}WhatsApp Downloads is now running.
 

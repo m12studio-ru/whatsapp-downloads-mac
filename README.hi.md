@@ -32,7 +32,11 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 बैकग्राउंड एजेंट `/Applications/WhatsApp Downloads.app` की ओर इशारा करने वाले नए एजेंट से
 बदल जाएगा।
 
-डिस्क इमेज ख़ुद बनानी हो तो:
+ऐप आपकी ही मशीन पर साइन होता है, Apple की तरफ़ से नहीं। इसलिए हर नई बिल्ड macOS को
+अलग ऐप लगती है और बदलने के बाद वह Downloads फ़ोल्डर की अनुमति फिर से माँगता है।
+
+डिस्क इमेज ख़ुद बनानी हो तो पहले Xcode Command Line Tools चाहिए — Apple के डेवलपर
+टूल (`xcode-select --install`)। उसके बाद:
 
 ```sh
 ./build.sh
@@ -65,21 +69,21 @@ cd whatsapp-downloads-mac
 
 | पाथ | यह क्या है |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | फ़ाइलें सरकाने वाली स्क्रिप्ट, करीब 15 लाइन zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | फ़ाइलें सरकाने वाली छोटी-सी zsh स्क्रिप्ट |
 | `~/Applications/WhatsAppDownloads.app` | छोटा-सा रैपर, जो इस स्क्रिप्ट को चलाता है |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | `~/Downloads` बदलते ही इसे जगा देता है |
 
 खींचकर इंस्टॉल करने पर सिर्फ़ `/Applications/WhatsApp Downloads.app` और वही
-`~/Library/LaunchAgents/WhatsAppDownloads.plist` बनता है। `./uninstall.sh` दोनों तरीक़ों को हटाता है।
+`~/Library/LaunchAgents/WhatsAppDownloads.plist` बनता है। `./uninstall.sh` बैकग्राउंड एजेंट और आपके होम फ़ोल्डर में उसकी लगाई हुई सारी चीज़ें हटा देता है;
+`/Applications/WhatsApp Downloads.app` मिटाने के लिए एडमिनिस्ट्रेटर की ज़रूरत पड़ सकती है,
+और न मिटे तो स्क्रिप्ट आपको बता देती है।
 
 ऐप बंडल क्यों? macOS फ़ोल्डर की अनुमति हर ऐप को अलग-अलग देता है। launchd से चली
 अकेली शेल स्क्रिप्ट को Downloads फ़ोल्डर खाली दिखता है और वह चुपचाप कुछ नहीं करती।
 इसलिए स्क्रिप्ट एक ऐप के अंदर रहती है, जो यह अनुमति अपने पास रख सकता है।
 
 यह *System Settings → General → Login Items → Allow in the Background* में
-**WhatsAppDownloads** नाम से दिखता है, जहाँ से आप इसे बंद कर सकते हैं। यह आपकी ही
-मशीन पर बनता है और लोकल तौर पर साइन होता है, इसलिए macOS डेवलपर को अनवेरिफ़ाइड
-बताता है।
+**WhatsAppDownloads** नाम से दिखता है, जहाँ से आप इसे बंद कर सकते हैं।
 
 ## यह करता क्या है
 
