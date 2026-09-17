@@ -1,12 +1,47 @@
 # WhatsApp Downloads
 
+[English](README.md) · [简体中文](README.zh.md) · [हिन्दी](README.hi.md) · [Español](README.es.md) · [العربية](README.ar.md) · [Français](README.fr.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Deutsch](README.de.md) · [Bahasa Indonesia](README.id.md) · [Türkçe](README.tr.md)
+
 WhatsApp for Mac saves everything straight into `~/Downloads` and has no setting to
 change that. This gives it its own folder, the way Telegram Desktop has one.
 
 Anything WhatsApp saves shows up in `~/Downloads/WhatsApp` a couple of seconds later.
 Nothing else in `~/Downloads` is touched.
 
-## Install
+## Install by dragging
+
+The file lives on the [latest release page](https://github.com/m12studio-ru/whatsapp-downloads-mac/releases/latest).
+
+Download `WhatsApp Downloads.dmg`, open it and drag **WhatsApp Downloads** into
+*Applications*. Open it **from the Applications folder** — not from the disk image —
+and it installs itself in the background.
+
+The app is not signed with an Apple developer certificate, so the first launch is
+blocked with *"the file is damaged"* or *"cannot be verified"*. Either:
+
+- right-click the app and choose **Open**, and if the window only offers *Done* /
+  *Move to Trash*, go to *System Settings → Privacy & Security* and click
+  **Open Anyway** there; or
+- remove the quarantine flag once:
+
+```sh
+xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
+```
+
+If you already installed the command-line version, opening the app replaces its
+background agent with one pointing at `/Applications/WhatsApp Downloads.app`.
+
+Because the signature is local and ad-hoc, every new build looks like a different
+app to macOS, so after replacing the app it asks for Downloads access again.
+
+To build the disk image yourself you need the Xcode Command Line Tools
+(`xcode-select --install`), then:
+
+```sh
+./build.sh
+```
+
+## Install from the command line
 
 ```sh
 git clone https://github.com/m12studio-ru/whatsapp-downloads-mac.git
@@ -35,6 +70,12 @@ Your files stay where they are; only the mover is removed.
 | `~/.local/bin/whatsapp-downloads.sh` | the mover, ~15 lines of zsh |
 | `~/Applications/WhatsAppDownloads.app` | tiny wrapper that runs the script |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | wakes it when `~/Downloads` changes |
+
+The drag-and-drop version installs only `/Applications/WhatsApp Downloads.app` plus
+the same `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` removes
+the agent and everything in your home folder; deleting
+`/Applications/WhatsApp Downloads.app` may need an administrator, and the script
+tells you if it could not.
 
 Why the app bundle? macOS grants folder access per application. A bare shell script
 started by launchd sees an empty Downloads folder and silently does nothing, so the
