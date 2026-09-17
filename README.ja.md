@@ -32,7 +32,11 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 コマンドライン版をすでに入れている場合、このアプリを開くと既存のバックグラウンド
 エージェントが `/Applications/WhatsApp Downloads.app` を指すものに置き換わります。
 
-ディスクイメージを自分でビルドするには:
+このアプリに署名しているのは Apple ではなく、あなたの Mac です。そのためビルドし直すたびに
+macOS からは別のアプリに見え、入れ替えたあとは Downloads フォルダへのアクセスを改めて聞かれます。
+
+ディスクイメージを自分でビルドするには Xcode のコマンドラインツール（Apple の開発者向けツール、
+`xcode-select --install`）が必要です。その上で:
 
 ```sh
 ./build.sh
@@ -64,13 +68,14 @@ cd whatsapp-downloads-mac
 
 | パス | 中身 |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | ファイルを移動する本体。zsh で約 15 行 |
+| `~/.local/bin/whatsapp-downloads.sh` | ファイルを移動する本体。短い zsh スクリプト |
 | `~/Applications/WhatsAppDownloads.app` | スクリプトを実行するだけの小さなラッパー |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | `~/Downloads` が変化したときに起動させる仕掛け |
 
 ドラッグ&ドロップ版が置くのは `/Applications/WhatsApp Downloads.app` と、同じ
-`~/Library/LaunchAgents/WhatsAppDownloads.plist` だけです。`./uninstall.sh` はどちらの
-入れ方も削除します。
+`~/Library/LaunchAgents/WhatsAppDownloads.plist` だけです。`./uninstall.sh` はバックグラウンドの
+仕組みとホームフォルダに置かれたものをすべて削除します。`/Applications/WhatsApp Downloads.app`
+の削除には管理者権限が必要なことがあり、消せなかった場合はその旨を知らせます。
 
 なぜアプリの形にするのか。macOS はフォルダへのアクセス権をアプリ単位で与えるからです。
 launchd がシェルスクリプトを直接起動しても、そのスクリプトからは空の Downloads フォルダしか見えず、
@@ -78,7 +83,6 @@ launchd がシェルスクリプトを直接起動しても、そのスクリプ
 
 *システム設定 → 一般 → ログイン項目 → バックグラウンドでの実行を許可* に
 **WhatsAppDownloads** として表示され、そこからオフにできます。
-お使いのマシン上でビルドしてローカルに署名しているため、macOS は「開発元が未確認」と表示します。
 
 ## 動作
 

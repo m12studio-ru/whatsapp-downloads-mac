@@ -33,7 +33,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Wenn du die Kommandozeilen-Version bereits installiert hast, ersetzt das Öffnen der App
 deren Hintergrunddienst durch einen, der auf `/Applications/WhatsApp Downloads.app` zeigt.
 
-Das Image selbst bauen:
+Die App wird auf deinem eigenen Mac signiert, nicht von Apple. Jede neue Version gilt
+für macOS deshalb als andere App – nach dem Austausch fragt sie erneut nach Zugriff
+auf den Downloads-Ordner.
+
+Für das Image brauchst du die Xcode Command Line Tools, die Entwickler-Werkzeuge von
+Apple (`xcode-select --install`). Dann:
 
 ```sh
 ./build.sh
@@ -66,22 +71,22 @@ Deine Dateien bleiben, wo sie sind – entfernt wird nur das Verschiebe-Tool.
 
 | Pfad | Was es ist |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | das eigentliche Skript, ca. 15 Zeilen zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | das eigentliche Skript, ein kurzes zsh-Skript |
 | `~/Applications/WhatsAppDownloads.app` | winziger Wrapper, der das Skript startet |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | weckt es, sobald sich `~/Downloads` ändert |
 
 Die per Drag-and-drop installierte Variante legt nur `/Applications/WhatsApp Downloads.app`
-und dieselbe `~/Library/LaunchAgents/WhatsAppDownloads.plist` an. `./uninstall.sh` entfernt
-beide Varianten.
+und dieselbe `~/Library/LaunchAgents/WhatsAppDownloads.plist` an. `./uninstall.sh` entfernt den
+Hintergrunddienst und alles, was es in deinem Benutzerordner angelegt hat; für das Löschen von
+`/Applications/WhatsApp Downloads.app` kann ein Administrator nötig sein – klappt es
+nicht, sagt das Skript Bescheid.
 
 Warum ein App-Bundle? macOS vergibt Ordnerzugriff pro Programm. Ein nacktes Shell-Skript,
 das von launchd gestartet wird, sieht einen leeren Downloads-Ordner und tut stillschweigend
 nichts. Deshalb steckt das Skript in einer App, die die Berechtigung halten kann.
 
 Unter *Systemeinstellungen → Allgemein → Anmeldeobjekte → Im Hintergrund erlauben*
-erscheint es als **WhatsAppDownloads** und lässt sich dort abschalten. Es wird auf deinem
-Rechner gebaut und lokal signiert – deshalb bezeichnet macOS den Entwickler als nicht
-verifiziert.
+erscheint es als **WhatsAppDownloads** und lässt sich dort abschalten.
 
 ## Verhalten
 

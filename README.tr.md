@@ -32,7 +32,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Komut satırı sürümünü daha önce kurduysanız, uygulamayı açmak onun arka plan ajanını
 `/Applications/WhatsApp Downloads.app` yolunu gösteren yenisiyle değiştirir.
 
-Disk imajını kendiniz derlemek için:
+Uygulama Apple tarafından değil, kendi Mac'inizde imzalanır. Bu yüzden her yeni derleme
+macOS'a başka bir uygulama gibi görünür; değiştirdikten sonra Downloads klasörü için
+izni yeniden ister.
+
+Disk imajını kendiniz derlemek için Xcode Komut Satırı Araçları, yani Apple'ın
+geliştirici araçları gerekir (`xcode-select --install`). Sonra:
 
 ```sh
 ./build.sh
@@ -64,22 +69,21 @@ Dosyalarınız olduğu yerde kalır; yalnızca taşıyıcı kaldırılır.
 
 | Yol | Ne işe yarar |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | taşıma işini yapan, ~15 satırlık zsh betiği |
+| `~/.local/bin/whatsapp-downloads.sh` | taşıma işini yapan kısa bir zsh betiği |
 | `~/Applications/WhatsAppDownloads.app` | betiği çalıştıran küçücük bir sarmalayıcı |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | `~/Downloads` değiştiğinde onu uyandırır |
 
 Sürükleyerek kurulan sürüm yalnızca `/Applications/WhatsApp Downloads.app` ile aynı
-`~/Library/LaunchAgents/WhatsAppDownloads.plist` dosyasını bırakır. `./uninstall.sh` her iki
-kurulumu da kaldırır.
+`~/Library/LaunchAgents/WhatsAppDownloads.plist` dosyasını bırakır. `./uninstall.sh` arka plan ajanını ve
+ev klasörünüze kurduğu her şeyi kaldırır; `/Applications/WhatsApp Downloads.app` silmek için
+yönetici gerekebilir, silinemezse betik bunu size söyler.
 
 Peki neden bir uygulama paketi? macOS klasör erişimini uygulama bazında verir. launchd
 tarafından başlatılan çıplak bir kabuk betiği Downloads klasörünü boş görür ve sessizce
 hiçbir şey yapmaz; bu yüzden betik, izni taşıyabilen bir uygulamanın içinde yaşıyor.
 
 *Sistem Ayarları → Genel → Giriş Öğeleri → Arka Planda İzin Ver* bölümünde
-**WhatsAppDownloads** olarak görünür; istediğinizde oradan kapatabilirsiniz. Uygulama
-sizin makinenizde derlenip yerel olarak imzalandığı için macOS geliştiriciyi
-doğrulanmamış sayar.
+**WhatsAppDownloads** olarak görünür; istediğinizde oradan kapatabilirsiniz.
 
 ## Nasıl davranır
 

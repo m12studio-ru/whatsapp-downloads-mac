@@ -33,7 +33,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Si ya habías instalado la versión de línea de comandos, abrir la app sustituye su agente
 en segundo plano por otro que apunta a `/Applications/WhatsApp Downloads.app`.
 
-Para construir la imagen de disco tú mismo:
+La app se firma en tu propio Mac, no la firma Apple. Por eso cada compilación nueva
+le parece a macOS una app distinta y, al sustituirla, vuelve a pedir acceso a la
+carpeta de descargas.
+
+Para construir la imagen de disco tú mismo necesitas las Herramientas de Línea de
+Comandos de Xcode (`xcode-select --install`), y luego:
 
 ```sh
 ./build.sh
@@ -65,22 +70,22 @@ Tus archivos se quedan donde están; solo se elimina el programa que los mueve.
 
 | Ruta | Qué es |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | el script que mueve los archivos, unas 15 líneas de zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | el script que mueve los archivos, un script corto de zsh |
 | `~/Applications/WhatsAppDownloads.app` | una pequeña envoltura que ejecuta el script |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | lo despierta cuando `~/Downloads` cambia |
 
 La versión que se instala arrastrando solo deja `/Applications/WhatsApp Downloads.app`
 más el mismo `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` elimina
-ambas variantes.
+el agente y todo lo que instaló en tu carpeta personal; borrar
+`/Applications/WhatsApp Downloads.app` puede requerir un administrador, y el script
+te avisa si no ha podido.
 
 ¿Por qué una app? macOS concede el acceso a carpetas por aplicación. Un script de
 shell lanzado por launchd ve una carpeta de descargas vacía y no hace nada sin
 avisar, así que el script vive dentro de una app que sí puede conservar el permiso.
 
 Aparece en *Ajustes del Sistema → General → Ítems de inicio → Permitir en segundo
-plano* como **WhatsAppDownloads**, donde puedes desactivarlo. Se compila en tu
-propio equipo y se firma en local, por eso macOS dice que el desarrollador no está
-verificado.
+plano* como **WhatsAppDownloads**, donde puedes desactivarlo.
 
 ## Comportamiento
 

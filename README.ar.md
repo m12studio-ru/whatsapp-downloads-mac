@@ -33,7 +33,11 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 إذا كنت قد ثبّتّ نسخة سطر الأوامر من قبل، فإن فتح التطبيق يستبدل عاملها الخلفي بآخر يشير
 إلى `/Applications/WhatsApp Downloads.app`.
 
-ولبناء صورة القرص بنفسك:
+التطبيق موقَّع على جهازك أنت، لا من Apple. لذلك يبدو كل بناء جديد لنظام macOS تطبيقًا
+مختلفًا، وبعد استبداله يطلب الإذن بالوصول إلى مجلد التنزيلات من جديد.
+
+ولبناء صورة القرص بنفسك تحتاج إلى أدوات سطر الأوامر من Xcode، وهي أدوات المطوّرين من
+Apple (`xcode-select --install`)، ثم:
 
 ```sh
 ./build.sh
@@ -65,12 +69,14 @@ cd whatsapp-downloads-mac
 
 | المسار | ما هو |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | أداة النقل، نحو 15 سطرًا من zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | أداة النقل، سكربت zsh قصير |
 | `~/Applications/WhatsAppDownloads.app` | غلاف صغير يشغّل السكربت |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | يوقظه عند أي تغيير في `~/Downloads` |
 
 أما النسخة التي تُثبَّت بالسحب فتضع `/Applications/WhatsApp Downloads.app` فقط، مع نفس ملف
-`~/Library/LaunchAgents/WhatsAppDownloads.plist`. والأمر `./uninstall.sh` يزيل الطريقتين معًا.
+`~/Library/LaunchAgents/WhatsAppDownloads.plist`. والأمر `./uninstall.sh` يزيل العامل الخلفي وكل ما وُضع في مجلدك
+الشخصي؛ أما حذف `/Applications/WhatsApp Downloads.app` فقد يحتاج إلى صلاحية مسؤول،
+وإن تعذّر الحذف أخبرك السكربت بذلك.
 
 ولماذا حزمة تطبيق أصلًا؟ لأن macOS يمنح صلاحية الوصول إلى المجلدات لكل تطبيق على حدة.
 السكربت المجرد الذي يشغّله launchd يرى مجلد تنزيلات فارغًا فلا يفعل شيئًا بصمت، لذلك
@@ -78,7 +84,7 @@ cd whatsapp-downloads-mac
 
 يظهر باسم **WhatsAppDownloads** في
 *System Settings → General → Login Items → Allow in the Background*، ومن هناك يمكنك
-إيقافه. وهو يُبنى على جهازك ويُوقَّع محليًا، ولذلك يصفه macOS بأن مطوّره غير موثّق.
+إيقافه.
 
 ## طريقة العمل
 

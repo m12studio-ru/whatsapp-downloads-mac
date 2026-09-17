@@ -33,7 +33,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Si vous aviez déjà installé la version en ligne de commande, ouvrir l'app remplace son
 agent d'arrière-plan par un agent pointant vers `/Applications/WhatsApp Downloads.app`.
 
-Pour construire l'image disque vous-même :
+L'app est signée sur votre propre Mac, pas par Apple. Chaque nouvelle version lui
+apparaît donc comme une autre app : après l'avoir remplacée, macOS redemande l'accès
+au dossier Téléchargements.
+
+Pour construire l'image disque vous-même, il vous faut les outils en ligne de commande
+de Xcode, les outils de développement d'Apple (`xcode-select --install`), puis :
 
 ```sh
 ./build.sh
@@ -67,13 +72,15 @@ Vos fichiers restent où ils sont ; seul le programme de déplacement est suppri
 
 | Chemin | De quoi il s'agit |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | le script qui déplace les fichiers, environ 15 lignes de zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | le script qui déplace les fichiers, un court script zsh |
 | `~/Applications/WhatsAppDownloads.app` | une petite enveloppe qui lance le script |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | réveille le tout dès que `~/Downloads` change |
 
 La version installée par glisser-déposer ne pose que `/Applications/WhatsApp Downloads.app`
-et le même `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` supprime les
-deux variantes.
+et le même `~/Library/LaunchAgents/WhatsAppDownloads.plist`. `./uninstall.sh` supprime
+l'agent et tout ce qu'il a installé dans votre dossier personnel ; supprimer
+`/Applications/WhatsApp Downloads.app` peut demander un administrateur, et le script
+vous prévient s'il n'y est pas parvenu.
 
 Pourquoi une application ? Parce que macOS accorde l'accès aux dossiers application
 par application. Un simple script shell lancé par launchd voit un dossier
@@ -81,9 +88,7 @@ Téléchargements vide et ne fait rien du tout, sans le moindre message. Le scri
 donc logé dans une app, qui, elle, peut détenir l'autorisation.
 
 Il apparaît sous le nom **WhatsAppDownloads** dans *Réglages Système → Général →
-Ouverture → Autoriser en arrière-plan*, où vous pouvez le désactiver. Comme il est
-construit et signé localement sur votre machine, macOS le présente comme provenant
-d'un développeur non vérifié.
+Ouverture → Autoriser en arrière-plan*, où vous pouvez le désactiver.
 
 ## Comportement
 

@@ -33,7 +33,12 @@ xattr -dr com.apple.quarantine "/Applications/WhatsApp Downloads.app"
 Kalau kamu sudah memasang versi baris perintah, membuka aplikasi ini akan mengganti agen
 latar belakangnya dengan yang menunjuk ke `/Applications/WhatsApp Downloads.app`.
 
-Untuk membangun image-nya sendiri:
+Aplikasi ini ditandatangani di Mac Anda sendiri, bukan oleh Apple. Karena itu setiap
+build baru terlihat sebagai aplikasi lain bagi macOS, dan setelah diganti ia akan
+meminta izin akses folder Downloads lagi.
+
+Untuk membangun image-nya sendiri Anda perlu Xcode Command Line Tools, alat bantu
+pengembang dari Apple (`xcode-select --install`). Lalu:
 
 ```sh
 ./build.sh
@@ -65,13 +70,15 @@ Berkas Anda tetap di tempatnya; yang dihapus hanya pemindahnya.
 
 | Lokasi | Keterangan |
 | --- | --- |
-| `~/.local/bin/whatsapp-downloads.sh` | pemindah berkas, sekitar 15 baris zsh |
+| `~/.local/bin/whatsapp-downloads.sh` | pemindah berkas, skrip zsh yang pendek |
 | `~/Applications/WhatsAppDownloads.app` | pembungkus mungil yang menjalankan skrip |
 | `~/Library/LaunchAgents/WhatsAppDownloads.plist` | membangunkannya setiap `~/Downloads` berubah |
 
 Versi yang dipasang dengan menyeret hanya menaruh `/Applications/WhatsApp Downloads.app`
 ditambah `~/Library/LaunchAgents/WhatsAppDownloads.plist` yang sama. `./uninstall.sh`
-menghapus kedua varian.
+menghapus agen latar belakang dan semua yang dipasangnya di folder rumah Anda; menghapus
+`/Applications/WhatsApp Downloads.app` bisa memerlukan administrator, dan skripnya
+memberi tahu kalau tidak berhasil.
 
 Kenapa harus berupa app bundle? macOS memberikan izin akses folder per aplikasi. Skrip
 shell polos yang dijalankan launchd hanya akan melihat folder Downloads yang kosong dan
@@ -79,9 +86,7 @@ diam-diam tidak melakukan apa-apa, jadi skripnya ditaruh di dalam sebuah app yan
 memegang izin tersebut.
 
 Ia muncul di *System Settings → General → Login Items → Allow in the Background*
-sebagai **WhatsAppDownloads**, dan di situ Anda bisa mematikannya. App ini dibangun di
-mesin Anda sendiri dan ditandatangani secara lokal, jadi macOS menyebut pengembangnya
-belum terverifikasi.
+sebagai **WhatsAppDownloads**, dan di situ Anda bisa mematikannya.
 
 ## Cara kerjanya
 
