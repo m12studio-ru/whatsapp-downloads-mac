@@ -1,6 +1,8 @@
 # WhatsApp Downloads
 
-[English](README.md) · [简体中文](README.zh.md) · [हिन्दी](README.hi.md) · [Español](README.es.md) · [العربية](README.ar.md) · [Français](README.fr.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [Deutsch](README.de.md) · [Bahasa Indonesia](README.id.md) · [Türkçe](README.tr.md)
+⬇️ **[Download the installer](https://github.com/m12studio-ru/whatsapp-downloads-mac/releases/latest/download/WhatsApp.Downloads.dmg)** (`WhatsApp Downloads.dmg`, macOS 13+)
+
+🇬🇧 [English](README.md) · 🇨🇳 [简体中文](README.zh.md) · 🇮🇳 [हिन्दी](README.hi.md) · 🇪🇸 [Español](README.es.md) · 🇸🇦 [العربية](README.ar.md) · 🇫🇷 [Français](README.fr.md) · 🇧🇷 [Português](README.pt.md) · 🇷🇺 [Русский](README.ru.md) · 🇯🇵 [日本語](README.ja.md) · 🇩🇪 [Deutsch](README.de.md) · 🇮🇩 [Bahasa Indonesia](README.id.md) · 🇹🇷 [Türkçe](README.tr.md)
 
 WhatsApp for Mac saves everything straight into `~/Downloads` and has no setting to
 change that. This gives it its own folder, the way Telegram Desktop has one.
