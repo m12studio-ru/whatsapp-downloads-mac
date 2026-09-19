@@ -121,3 +121,7 @@ Issue や Pull Request は歓迎しますが、必ず返信できるとは限り
 ## ライセンス
 
 MIT
+
+## 商標
+
+本プロジェクトは WhatsApp Inc. および Meta Platforms, Inc. とは無関係であり、両社の承認も受けていません。WhatsApp は権利者の商標です。

@@ -125,3 +125,7 @@ willkommen, eine Antwort ist aber nicht garantiert.
 ## Lizenz
 
 MIT
+
+## Markenzeichen
+
+Dieses Projekt steht in keiner Verbindung zu WhatsApp Inc. oder Meta Platforms, Inc. und wird von ihnen nicht unterstützt. WhatsApp ist eine Marke ihres Inhabers.

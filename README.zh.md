@@ -114,3 +114,7 @@ macOS 13 或更高版本。无需任何依赖。
 ## 许可证
 
 MIT
+
+## 商标
+
+本项目与 WhatsApp Inc. 和 Meta Platforms, Inc. 无关，也未获其认可。WhatsApp 是其所有者的商标。

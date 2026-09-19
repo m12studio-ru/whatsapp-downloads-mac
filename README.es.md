@@ -124,3 +124,7 @@ requests son bienvenidos, pero no se garantiza respuesta.
 ## Licencia
 
 MIT
+
+## Marca registrada
+
+Este proyecto no está afiliado ni respaldado por WhatsApp Inc. ni Meta Platforms, Inc. WhatsApp es una marca registrada de su propietario.

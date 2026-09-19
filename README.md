@@ -96,9 +96,16 @@ as **WhatsAppDownloads**, where you can switch it off.
 
 ## Configuration
 
-Edit the three variables at the top of `whatsapp-downloads.sh`, or set `WA_SRC`,
-`WA_DST` and `WA_PREFIX`. Changing `WA_SRC` to a folder outside `~/Downloads`
-means macOS will ask for access to that folder instead.
+Edit the three variables at the top of `whatsapp-downloads.sh`: `WA_SRC`,
+`WA_DST` and `WA_PREFIX`. To watch a folder other than `~/Downloads`, change
+`WA_SRC` **and** the `WatchPaths` entry in
+`~/Library/LaunchAgents/WhatsAppDownloads.plist` — otherwise the script keeps
+waking up on `~/Downloads` instead. macOS will then ask for access to the new
+folder.
+
+The drag-and-drop version rewrites that plist on every launch and keeps its copy
+of the script inside the app, so configuration is only practical with the
+command-line install.
 
 ## Tests
 
@@ -122,3 +129,8 @@ but there is no promise of a reply.
 ## License
 
 MIT
+
+## Trademark
+
+This project is not affiliated with, endorsed by or connected to WhatsApp Inc. or
+Meta Platforms, Inc. WhatsApp is a trademark of its owner.
