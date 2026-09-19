@@ -122,3 +122,7 @@ karşılanır ama yanıt vereceğime dair bir söz veremem.
 ## Lisans
 
 MIT
+
+## Ticari marka
+
+Bu proje WhatsApp Inc. veya Meta Platforms, Inc. ile bağlantılı değildir ve onlar tarafından onaylanmamıştır. WhatsApp, sahibinin ticari markasıdır.

@@ -127,3 +127,7 @@ sont les bienvenues, mais aucune réponse n'est garantie.
 ## Licence
 
 MIT
+
+## Marque déposée
+
+Ce projet n’est ni affilié à WhatsApp Inc. ou Meta Platforms, Inc., ni approuvé par eux. WhatsApp est une marque de son propriétaire.

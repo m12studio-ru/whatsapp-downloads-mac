@@ -123,3 +123,7 @@ bem-vindos, mas não há garantia de resposta.
 ## Licença
 
 MIT
+
+## Marca registrada
+
+Este projeto não é afiliado nem endossado pela WhatsApp Inc. ou pela Meta Platforms, Inc. WhatsApp é uma marca registrada de seu proprietário.

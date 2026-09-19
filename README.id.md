@@ -125,3 +125,7 @@ senang hati, tapi tidak ada janji akan dibalas.
 ## Lisensi
 
 MIT
+
+## Merek dagang
+
+Proyek ini tidak berafiliasi dengan maupun didukung oleh WhatsApp Inc. atau Meta Platforms, Inc. WhatsApp adalah merek dagang milik pemiliknya.
