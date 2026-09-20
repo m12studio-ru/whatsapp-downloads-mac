@@ -1,137 +1,149 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-.wa-page{
-  --bg:#1a1a1a;
-  --fg:#ffffff;
-  --muted:#c3c4c7;
-  --accent:#ccff00;
-  --ink:#161b18;
-  --line:rgba(255,255,255,.14);
-}
-.wa-page, .wa-page *{box-sizing:border-box}
-.wa-page{-webkit-text-size-adjust:100%}
-.wa-page{
-  margin:0;background:var(--bg);color:var(--fg);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-size:18px;line-height:1.5;
-}
-.wa-page .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
-.wa-page .btn,.wa-page table,.wa-page th,.wa-page td,.wa-page summary,.wa-page b,.wa-page figcaption{font-family:inherit;text-transform:none;letter-spacing:normal}
-.wa-page h1,.wa-page h2,.wa-page h3{font-family:inherit;text-transform:none;font-weight:600;line-height:1;letter-spacing:-.02em;margin:0}
-.wa-page h1{font-size:clamp(28px,4.4vw,54px)}
-.wa-page h2{font-size:clamp(26px,3.6vw,44px);margin-bottom:28px}
-.wa-page h3{font-size:20px;line-height:1.2;margin-bottom:10px}
-.wa-page p{margin:0 0 16px}
 body.page-id-295 .simple-page{padding-left:0;padding-right:0}
 body.page-id-295 .simple-page__inner{max-width:none;width:100%}
+
 .wa-page{overflow-x:hidden}
-.wa-page .wa-mark, .wa-page h1 .wa-mark{color:var(--accent)!important;text-decoration:none!important;border:0!important;background:none!important;box-shadow:none!important}
-.wa-page section{padding:72px 0;border-top:1px solid var(--line)}
-.wa-page header{padding:56px 0 8px;border:0}
-.wa-page .lead{font-size:clamp(19px,2vw,24px);color:var(--muted);max-width:720px;margin-top:28px}
-.wa-page .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;align-items:center}
-.wa-page .btn{
-  display:inline-block;padding:18px 30px;border-radius:999px;
-  font-weight:600;font-size:17px;text-decoration:none;
-  background:var(--accent);color:var(--ink);border:1px solid var(--accent);
+.wa-page .wa-sec{padding-left:var(--mkv-offset);padding-right:var(--mkv-offset);margin-top:var(--mkv-block-offset)}
+.wa-page .wa-hero{padding-left:var(--mkv-offset);padding-right:var(--mkv-offset);padding-top:var(--mkv-offset)}
+.wa-page h2.title--xl{font-size:14rem;line-height:1.2;font-weight:400;font-family:"Coolvetica",sans-serif}
+@media (max-width:1280px){.wa-page h2.title--xl{font-size:10rem;line-height:1.2}}
+@media (max-width:576px){.wa-page h2.title--xl{font-size:6rem;line-height:1.2}}
+.wa-page .wa-head{gap:1.6rem;display:grid;margin-bottom:8rem}
+.wa-page .wa-head__desc{color:#808080;max-width:57.6rem}
+.wa-page .wa-muted{color:#808080}
+
+.wa-page .wa-hero__title{font-size:4rem;line-height:1;font-weight:600;max-width:96rem}
+.wa-page .wa-hero__desc{color:#808080;max-width:64rem;margin-top:3.2rem}
+.wa-page .wa-actions{gap:1.2rem 3.2rem;display:flex;flex-wrap:wrap;align-items:center;margin-top:4rem}
+.wa-page .wa-dl{text-decoration:none;color:#1A1A1A;background:#CCFF00;font-weight:500;font-size:1.6rem;line-height:1.25;text-transform:uppercase;padding:2rem 4.5rem;border-radius:10rem;display:inline-flex;transition:opacity 300ms}
+.wa-page .wa-dl:hover{opacity:.5}
+.wa-page .wa-note{margin-top:2.4rem}
+
+.wa-page .wa-demo{margin:8rem 0 0;border-radius:2rem;overflow:hidden;background:rgba(13,13,13,.5)}
+.wa-page .wa-demo img{display:block;width:100%;height:auto}
+.wa-page .wa-demo figcaption{color:#808080;padding:2.4rem 3.2rem}
+
+.wa-page .wa-cards{gap:1.2rem;display:grid;grid-template-columns:repeat(2,1fr)}
+.wa-page .wa-card{padding:4.8rem;border-radius:2rem;background:rgba(13,13,13,.5);-webkit-backdrop-filter:blur(3rem);backdrop-filter:blur(3rem)}
+.wa-page .wa-card__title{font-size:2.8rem;line-height:3.2rem;font-weight:600}
+.wa-page .wa-card__desc{color:#808080;margin-top:2.4rem}
+
+.wa-page .wa-steps{gap:1.2rem;display:grid;grid-template-columns:repeat(3,1fr);list-style:none}
+.wa-page .wa-step__num{color:#CCFF00;font-family:"Coolvetica",sans-serif;font-weight:400;font-size:8rem;line-height:1}
+.wa-page .wa-step__text{margin-top:2.4rem}
+.wa-page .wa-step__text b{font-weight:600}
+.wa-page .wa-step__text span{color:#808080}
+
+.wa-page .wa-table{font-size:2rem;line-height:2.4rem;margin-top:0}
+.wa-page .wa-table__upper{color:#808080;padding:3.2rem 0;gap:1.2rem;display:grid;grid-template-columns:repeat(24,1fr)}
+.wa-page .wa-table__basis{display:grid;border-top:.1rem solid #4D4D4D}
+.wa-page .wa-table__row{padding:3.2rem 0;gap:1.2rem;display:grid;grid-template-columns:repeat(24,1fr);border-bottom:.1rem solid #4D4D4D}
+.wa-page .wa-table__row--own .wa-c1{color:#CCFF00}
+.wa-page .wa-c1{grid-column:1/8}
+.wa-page .wa-c2{grid-column:8/13}
+.wa-page .wa-c3{grid-column:13/-1}
+
+.wa-page .wa-faq{border-top:.1rem solid #4D4D4D}
+.wa-page .wa-faq details{border-bottom:.1rem solid #4D4D4D;padding:3.2rem 0}
+.wa-page .wa-faq summary{cursor:pointer;list-style:none;font-size:2rem;line-height:2.4rem;display:flex;justify-content:space-between;gap:2.4rem}
+.wa-page .wa-faq summary::-webkit-details-marker{display:none}
+.wa-page .wa-faq summary::after{content:"+";color:#CCFF00}
+.wa-page .wa-faq details[open] summary::after{content:"–"}
+.wa-page .wa-faq p{color:#808080;max-width:80rem;margin-top:2.4rem}
+.wa-page code{color:#CCFF00;font-size:1.5rem;word-break:break-all}
+
+.wa-page .wa-under{padding-left:var(--mkv-offset);padding-right:var(--mkv-offset);margin-top:var(--mkv-block-offset);padding-bottom:8rem;color:#808080;display:grid;gap:1.2rem}
+.wa-page .wa-under p{max-width:80rem}
+
+@media (max-width:1280px){
+  .wa-page .wa-cards,.wa-page .wa-steps{grid-template-columns:1fr}
+  .wa-page .wa-table__upper{display:none}
+  .wa-page .wa-table__row{grid-template-columns:1fr;gap:.8rem}
+  .wa-page .wa-c1,.wa-page .wa-c2,.wa-page .wa-c3{grid-column:auto}
+  .wa-page .wa-c2,.wa-page .wa-c3{color:#808080}
+  .wa-page .wa-head{margin-bottom:6rem}
 }
-.wa-page .btn:hover{filter:brightness(1.08)}
-.wa-page .btn--ghost{background:transparent;color:var(--fg);border-color:var(--line)}
-.wa-page .btn--ghost:hover{border-color:var(--fg);filter:none}
-.wa-page .note{color:var(--muted);font-size:15px;margin:14px 0 0}
-.wa-page .demo{margin:56px 0 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#111}
-.wa-page .demo img{display:block;width:100%;height:auto}
-.wa-page .demo figcaption{color:var(--muted);font-size:15px;padding:14px 20px;border-top:1px solid var(--line)}
-.wa-page .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
-.wa-page .card p{color:var(--muted);margin:0}
-.wa-page ol.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.wa-page ol.steps li{counter-increment:s;padding-top:52px;position:relative;color:var(--muted)}
-.wa-page ol.steps li::before{
-  content:counter(s);position:absolute;top:0;left:0;
-  width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--ink);
-  font-weight:600;display:flex;align-items:center;justify-content:center;font-size:17px;
+@media (max-width:576px){
+  .wa-page .wa-hero__title{font-size:2.4rem;line-height:2.8rem}
+  .wa-page .wa-card{padding:4rem 3.2rem}
+  .wa-page .wa-dl{width:100%;justify-content:center;padding:2rem}
 }
-.wa-page ol.steps b{color:var(--fg);font-weight:600;display:block;margin-bottom:6px}
-.wa-page .tablewrap{overflow-x:auto}
-.wa-page table{width:100%;border-collapse:collapse;font-size:17px;min-width:320px}
-.wa-page th,.wa-page td{text-align:left;padding:16px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-.wa-page th{color:var(--muted);font-weight:500;font-size:15px}
-.wa-page td:first-child{font-weight:500}
-.wa-page .yes{color:var(--accent)}
-.wa-page details{border-bottom:1px solid var(--line);padding:20px 0}
-.wa-page details summary{cursor:pointer;font-weight:500;list-style:none}
-.wa-page details summary::-webkit-details-marker{display:none}
-.wa-page details summary::after{content:"+";float:right;color:var(--accent)}
-.wa-page details[open] summary::after{content:"–"}
-.wa-page details p{color:var(--muted);margin:14px 0 0;max-width:760px}
-.wa-page code{background:#000;border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:15px;word-break:break-all}
-.wa-page footer{padding:56px 0;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
-.wa-page footer a{color:var(--fg)}
-@media (max-width:640px){.wa-page section{padding:52px 0}.wa-page table{font-size:15px;min-width:0}.wa-page th,.wa-page td{padding:12px 8px}.wa-page .btn{width:100%;text-align:center}}
-.wa-page{padding-bottom:96px}
-.wa-page a{text-decoration:none}
-.wa-page .mark{text-decoration:underline}
 </style>
+
 <div class="wa-page">
-<div class="wrap wa-hero">
-  <h1>WhatsApp сваливает файлы в «Загрузки».<br>Это решается <span class="wa-mark">одним приложением</span>.</h1>
-  <p class="lead">Бесплатное приложение для Mac переносит файлы из WhatsApp в отдельную папку «Загрузки/WhatsApp» — как у Telegram. Остальное в «Загрузках» не трогает.</p>
-  <div class="cta">
-    <a class="btn" href="https://github.com/m12studio-ru/whatsapp-downloads-mac/releases/latest/download/WhatsApp.Downloads.dmg">Скачать для Mac</a>
-    <a class="btn btn--ghost" href="https://github.com/m12studio-ru/whatsapp-downloads-mac">Исходный код на GitHub</a>
+
+<section class="section wa-hero">
+  <h1 class="title wa-hero__title">WhatsApp сваливает файлы в «Загрузки». Это решается <span class="link">одним приложением</span>.</h1>
+  <div class="desc desc--lg wa-hero__desc">Бесплатное приложение для Mac переносит файлы из WhatsApp в отдельную папку «Загрузки/WhatsApp» — как у Telegram. Остальное в «Загрузках» не трогает.</div>
+  <div class="wa-actions">
+    <a class="wa-dl" href="https://github.com/m12studio-ru/whatsapp-downloads-mac/releases/latest/download/WhatsApp.Downloads.dmg">Скачать для Mac</a>
+    <a class="link text--lg" href="https://github.com/m12studio-ru/whatsapp-downloads-mac">Исходный код на GitHub</a>
   </div>
-  <p class="note">Бесплатно, открытый код (MIT). macOS 13 и новее, Intel и Apple Silicon.</p>
-  <figure class="demo">
-    <img src="https://raw.githubusercontent.com/m12studio-ru/whatsapp-downloads-mac/main/promo/landing/demo.gif" alt="Файл из WhatsApp появляется в «Загрузках» и через пару секунд уезжает в папку WhatsApp" width="1240" height="390" loading="lazy">
-    <figcaption>Так это выглядит: файл упал в «Загрузки» и сам уехал в папку WhatsApp. Остальные файлы на месте.</figcaption>
+  <div class="text--sm wa-muted wa-note">Бесплатно, открытый код (MIT). macOS 13 и новее, Intel и Apple Silicon.</div>
+  <figure class="wa-demo">
+    <img src="https://m12studio.ru/wp-content/uploads/2026/09/whatsapp-downloads-demo.gif" alt="Файл из WhatsApp появляется в «Загрузках» и через пару секунд уезжает в папку WhatsApp" width="1240" height="390">
+    <figcaption class="text--sm">Файл упал в «Загрузки» и сам уехал в папку WhatsApp. Остальные файлы на месте.</figcaption>
   </figure>
+</section>
+
+<section class="section wa-sec">
+  <div class="wa-head">
+    <h2 class="title title--xl title--coolv">Что оно делает</h2>
+    <div class="desc desc--md wa-head__desc">Четыре вещи, и больше ничего. Ни настроек, ни окон, ни иконки в меню.</div>
+  </div>
+  <div class="wa-cards">
+    <div class="wa-card"><div class="title wa-card__title">Переносит только файлы WhatsApp</div><div class="desc desc--md wa-card__desc">Всё, что начинается с «WhatsApp&nbsp;», уезжает в «Загрузки/WhatsApp» через пару секунд. Остальное остаётся на месте.</div></div>
+    <div class="wa-card"><div class="title wa-card__title">Ничего не затирает</div><div class="desc desc--md wa-card__desc">Если файл с таким именем уже есть, к новому добавится номер: «WhatsApp Image 2025-09-18 at 18.21.56 (1).jpeg».</div></div>
+    <div class="wa-card"><div class="title wa-card__title">Не ест батарею</div><div class="desc desc--md wa-card__desc">В фоне ничего не висит. Система сама будит приложение, когда в папке что-то меняется.</div></div>
+    <div class="wa-card"><div class="title wa-card__title">Не мешает загрузкам</div><div class="desc desc--md wa-card__desc">Недокачанные файлы браузера не трогает, пока они не докачаются.</div></div>
+  </div>
+</section>
+
+<section class="section wa-sec">
+  <div class="wa-head">
+    <h2 class="title title--xl title--coolv">Установка</h2>
+    <div class="desc desc--md wa-head__desc">Три шага, дальше приложение работает само.</div>
+  </div>
+  <ol class="wa-steps">
+    <li><div class="wa-step__num">1</div><div class="desc desc--md wa-step__text"><b>Скачайте</b> файл и откройте его.</div></li>
+    <li><div class="wa-step__num">2</div><div class="desc desc--md wa-step__text"><b>Перетащите</b> приложение в «Программы».</div></li>
+    <li><div class="wa-step__num">3</div><div class="desc desc--md wa-step__text"><b>Запустите</b> его из «Программ» и нажмите «Разрешить», когда система спросит доступ к «Загрузкам».</div></li>
+  </ol>
+  <div class="desc desc--md wa-head__desc wa-note" style="max-width:80rem">Приложение подписано ad-hoc, сертификата Apple у него нет, поэтому при первом запуске macOS покажет предупреждение: нажмите на приложение правой кнопкой и выберите «Открыть». После каждого обновления доступ придётся выдать заново — у новой сборки другая подпись, и для macOS это другое приложение.</div>
+</section>
+
+<section class="section wa-sec">
+  <div class="wa-head">
+    <h2 class="title title--xl title--coolv">Чем это лучше</h2>
+    <div class="desc desc--md wa-head__desc">Способы, которые обычно советуют, и во что они обходятся.</div>
+  </div>
+  <div class="wa-table">
+    <div class="wa-table__upper"><div class="wa-c1">Способ</div><div class="wa-c2">Цена</div><div class="wa-c3">Сколько возни</div></div>
+    <div class="wa-table__basis">
+      <div class="wa-table__row"><div class="wa-c1">Hazel</div><div class="wa-c2">42 доллара единоразово</div><div class="wa-c3">Настроить правило</div></div>
+      <div class="wa-table__row"><div class="wa-c1">Быстрые команды</div><div class="wa-c2">Бесплатно</div><div class="wa-c3">Собрать мышкой; автоматизацию с триггером «Папка» надо создавать на каждом Маке заново</div></div>
+      <div class="wa-table__row"><div class="wa-c1">Перекладывать руками</div><div class="wa-c2">Бесплатно</div><div class="wa-c3">Каждый день</div></div>
+      <div class="wa-table__row wa-table__row--own"><div class="wa-c1">WhatsApp Downloads</div><div class="wa-c2">Бесплатно</div><div class="wa-c3">Перетащить в «Программы»</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section wa-sec">
+  <div class="wa-head">
+    <h2 class="title title--xl title--coolv">Вопросы</h2>
+  </div>
+  <div class="wa-faq">
+    <details><summary>Оно читает мою переписку?</summary><p class="desc desc--md">Нет. Приложение вообще не знает про WhatsApp. Оно смотрит на имена файлов в папке «Загрузки» и переносит те, что начинаются с «WhatsApp&nbsp;». Код открыт: переносом занимается 24-строчный скрипт внутри приложения.</p></details>
+    <details><summary>Зачем ему доступ к «Загрузкам»?</summary><p class="desc desc--md">Чтобы видеть файлы и переносить их. macOS выдаёт такой доступ приложениям, а не скриптам, поэтому скрипт и лежит внутри приложения.</p></details>
+    <details><summary>А старые файлы?</summary><p class="desc desc--md">Те, что уже лежат в «Загрузках», переедут после того, как вы нажмёте «Разрешить»: до этого приложение видит папку пустой.</p></details>
+    <details><summary>Как удалить?</summary><p class="desc desc--md">Выгрузите фонового агента — <code>launchctl bootout gui/$(id -u)/WhatsAppDownloads</code> (или просто перезайдите в систему), удалите файл <code>~/Library/LaunchAgents/WhatsAppDownloads.plist</code> и перетащите приложение из «Программ» в корзину. Или запустите <code>./uninstall.sh</code> из репозитория. Ваши файлы останутся на месте.</p></details>
+    <details><summary>Можно другую папку или другое имя?</summary><p class="desc desc--md">В версии из DMG — нет. Скрипт лежит внутри приложения: правка ломает подпись, а при обновлении файл заменится. Если это нужно, ставьте из репозитория через <code>./install.sh</code> — тогда скрипт лежит в <code>~/.local/bin/whatsapp-downloads.sh</code> и правится в первых строках. Если меняете саму отслеживаемую папку, поправьте ещё и <code>WatchPaths</code> в плисте агента. Это описано в README.</p></details>
+  </div>
+</section>
+
+<div class="wa-under text--sm">
+  <p>Сделали в <a class="link" href="https://m12studio.ru">m12studio</a>. Бесплатно, код открыт по лицензии MIT. Нашли ошибку — пишите в <a class="link" href="https://github.com/m12studio-ru/whatsapp-downloads-mac/issues">issues на GitHub</a>.</p>
+  <p>Проект не связан с WhatsApp Inc. и Meta Platforms, Inc. WhatsApp — товарный знак своего владельца.</p>
 </div>
 
-<section class="wrap">
-  <h2>Что оно делает</h2>
-  <div class="grid">
-    <div class="card"><h3>Переносит только файлы WhatsApp</h3><p>Всё, что начинается с «WhatsApp », уезжает в «Загрузки/WhatsApp» через пару секунд. Остальное остаётся на месте.</p></div>
-    <div class="card"><h3>Ничего не затирает</h3><p>Если файл с таким именем уже есть, к новому добавится номер: «WhatsApp Image 2025-09-18 at 18.21.56 (1).jpeg».</p></div>
-    <div class="card"><h3>Не ест батарею</h3><p>В фоне ничего не висит. Система сама будит приложение, когда в папке что-то меняется.</p></div>
-    <div class="card"><h3>Не мешает загрузкам</h3><p>Недокачанные файлы браузера не трогает, пока они не докачаются.</p></div>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2>Установка</h2>
-  <ol class="steps">
-    <li><b>Скачайте</b> файл и откройте его.</li>
-    <li><b>Перетащите</b> приложение в «Программы».</li>
-    <li><b>Запустите</b> его из «Программ» и нажмите «Разрешить», когда система спросит доступ к «Загрузкам».</li>
-  </ol>
-  <p class="note">Приложение подписано ad-hoc, сертификата Apple у него нет, поэтому при первом запуске macOS покажет предупреждение. Нажмите на приложение правой кнопкой и выберите «Открыть» либо разрешите запуск в «Настройки → Конфиденциальность и безопасность». Дальше оно запускается само. После каждого обновления доступ придётся выдать заново: у новой сборки другая подпись, и для macOS это другое приложение.</p>
-</section>
-
-<section class="wrap">
-  <h2>Чем это лучше других способов</h2>
-  <div class="tablewrap">
-    <table>
-      <tr><th>Способ</th><th>Цена</th><th>Сколько возни</th></tr>
-      <tr><td>Hazel</td><td>42 доллара единоразово</td><td>Настроить правило</td></tr>
-      <tr><td>Быстрые команды</td><td>Бесплатно</td><td>Собрать мышкой; сама команда синхронизируется через iCloud, автоматизацию с триггером «Папка» надо создавать на каждом Маке заново</td></tr>
-      <tr><td>Перекладывать руками</td><td>Бесплатно</td><td>Каждый день</td></tr>
-      <tr><td><b>WhatsApp Downloads</b></td><td class="yes">Бесплатно</td><td class="yes">Перетащить в «Программы»</td></tr>
-    </table>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2>Вопросы</h2>
-  <details><summary>Оно читает мою переписку?</summary><p>Нет. Приложение вообще не знает про WhatsApp. Оно смотрит на имена файлов в папке «Загрузки» и переносит те, что начинаются с «WhatsApp ». Код открыт: переносом занимается 24-строчный скрипт внутри приложения.</p></details>
-  <details><summary>Зачем ему доступ к «Загрузкам»?</summary><p>Чтобы видеть файлы и переносить их. macOS выдаёт такой доступ приложениям, а не скриптам, поэтому скрипт и лежит внутри приложения.</p></details>
-  <details><summary>А старые файлы?</summary><p>Те, что уже лежат в «Загрузках», переедут после того, как вы нажмёте «Разрешить» доступ к «Загрузкам»: до этого приложение видит папку пустой.</p></details>
-  <details><summary>Как удалить?</summary><p>Выгрузите фонового агента — <code>launchctl bootout gui/$(id -u)/WhatsAppDownloads</code> (или просто перезайдите в систему), удалите файл <code>~/Library/LaunchAgents/WhatsAppDownloads.plist</code> и перетащите приложение из «Программ» в корзину — для этого может понадобиться пароль администратора. Или запустите <code>./uninstall.sh</code> из репозитория. Ваши файлы останутся на месте.</p></details>
-  <details><summary>Можно другую папку или другое имя?</summary><p>В версии из DMG — нет. Скрипт лежит внутри приложения: правка ломает подпись, а при обновлении файл заменится. Дописать переменные в плист агента тоже не выйдет: приложение перезаписывает его само. Если это нужно, ставьте из репозитория через <code>./install.sh</code> — тогда скрипт лежит в <code>~/.local/bin/whatsapp-downloads.sh</code>, и папку с началом имени можно поменять в его первых строках. Если меняете саму отслеживаемую папку, поправьте ещё и <code>WatchPaths</code> в плисте агента, иначе он будет просыпаться на старой. Это описано в README.</p></details>
-</section>
-
-<footer class="wrap">
-  <p>Сделали в <a href="https://m12studio.ru">m12studio</a>. Бесплатно, код открыт по лицензии MIT.<br>
-  Нашли ошибку — пишите в <a href="https://github.com/m12studio-ru/whatsapp-downloads-mac/issues">issues на GitHub</a>.</p>
-  <p>Проект не связан с WhatsApp Inc. и Meta Platforms, Inc. WhatsApp — товарный знак своего владельца.</p>
-</footer>
 </div>
